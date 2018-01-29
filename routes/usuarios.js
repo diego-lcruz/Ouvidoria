@@ -1,24 +1,24 @@
 var express = require("express")
 var app = express()
 var utils = require('../models/index');
-app.post('/usuarios',function (req,res){
-	usuarios
+app.post('/usuario',function (req,res){
+	usuario
 	.create(req.body)
 	.then(function(usuario){
-		utils.response(res, true ,"O usuário foi adicionado",usuarios, undefined);
+		utils.response(res, true ,"O usuário foi adicionado",usuario, undefined);
 	},function(erro){
 		utils.response(res,false,undefined,erro,undefined);
 	});
 app.get('/usuarios', function(req, res) {
-  usuarios
+  usuario
     .findAll()
-    .then(function(usuarios) {
-        utils.response(res, true, undefined, usuarios, undefined);
+    .then(function(usuario) {
+        utils.response(res, true, undefined, usuario, undefined);
     })
 });
 
-app.get("usuarios/:id",function(req,res){
-	usuarios
+app.get("usuario/:id",function(req,res){
+	usuario
 	.create(req.body)
 	.then(function(usuario){
 		if(usuario){
@@ -30,8 +30,8 @@ app.get("usuarios/:id",function(req,res){
 
 
 });
-app.delete('/usuarios/:id', function(req, res) {
-    usuarios
+app.delete('/usuario/:id', function(req, res) {
+    usuario
       .destroy({
           where: {
               id: req.params.id
