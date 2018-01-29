@@ -7,7 +7,7 @@ var http = require('http');
 
 var bp = require('body-parser')
 var mensagens = require('./routes/mensagens')
-var usuarios = require('./usuarios')
+var usuarios = require('./routes/usuarios')
 
 app.use(bp.json());
 
