@@ -1,17 +1,22 @@
 var express = require("express")
 var app = express()
-var utils = require('../models/index');
-app.post("/mensagem",function(req,res){
-	mensagem
+var models  = require('../models/index');
+var utils = require('../modules/utils');
+var Mensagem = models.Mensagem;
+app.post('/mensagens', function (req,res) {
+	Mensagem
 	.create(req.body)
 	.then(function(mensagem){
 		utils.response(res,true,"A mensagem foi criada",mensagem,undefined);
 	},function(erro){
 		utils.response(res,false,undefined,erro,undefined);
 	})
+
 });
-app.get("mensagem/:id",function(req,res){
-	mensagem
+
+app.get("/mensagens/:id",function(req,res){
+
+	Mensagem
 	.findById(parseInt(req.params.id))
 	.then(function(mensagem){
 		if(mensagem){
@@ -24,7 +29,7 @@ app.get("mensagem/:id",function(req,res){
 
 });
 app.delete('/mensagem/:id', function(req, res) {
-    mensagem
+    Mensagem
       .destroy({
           where: {
               id: req.params.id
@@ -35,5 +40,5 @@ app.delete('/mensagem/:id', function(req, res) {
       });
 });
 
-});
+
 module.exports =app;
