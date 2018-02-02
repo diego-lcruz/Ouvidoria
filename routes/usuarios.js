@@ -1,8 +1,11 @@
 var express = require("express")
 var app = express()
-var utils = require('../models/index');
+var models  = require('../models/index');
+var utils = require('../modules/utils');
+var Usuario = models.Usuario;
+
 app.post('/usuario',function (req,res){
-	usuario
+	Usuario
 	.create(req.body)
 	.then(function(usuario){
 		utils.response(res, true ,"O usuário foi adicionado",usuario, undefined);
@@ -10,7 +13,7 @@ app.post('/usuario',function (req,res){
 		utils.response(res,false,undefined,erro,undefined);
 	});
 app.get('/usuarios', function(req, res) {
-  usuario
+  Usuario
     .findAll()
     .then(function(usuario) {
         utils.response(res, true, undefined, usuario, undefined);
@@ -18,7 +21,7 @@ app.get('/usuarios', function(req, res) {
 });
 
 app.get("usuario/:id",function(req,res){
-	usuario
+	Usuario
 	.create(req.body)
 	.then(function(usuario){
 		if(usuario){
@@ -31,7 +34,7 @@ app.get("usuario/:id",function(req,res){
 
 });
 app.delete('/usuario/:id', function(req, res) {
-    usuario
+    Usuario
       .destroy({
           where: {
               id: req.params.id
