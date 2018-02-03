@@ -28,6 +28,19 @@ app.get("/mensagens/:id",function(req,res){
 
 
 });
+
+// Obter todos as turmas
+app.get('/mensagens', function(req, res) {
+    Mensagem
+        .findAll({
+            // use include para incluir os modelos relacionados a este.
+            include: [ models.usuario]
+        })
+        .then(function(objs) {
+            utils.response(res, true, undefined, objs, undefined);
+        });
+});
+
 app.delete('/mensagem/:id', function(req, res) {
     Mensagem
       .destroy({

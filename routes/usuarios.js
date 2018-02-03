@@ -33,6 +33,29 @@ app.get("usuario/:id",function(req,res){
 
 
 });
+app.put('/usuarios', function(req, res) {
+  Usuario
+    .findById(parseInt(req.body.id))
+    .then(function(usuario) {
+      if (usuario) {
+        // Cada parâmetro recebe o novo valor que vem da requisição (req.body.*), se este for definido,
+        // ou permanece com o valor antigo.
+        // VARIAVEL = VALOR1 || VALOR2 significa que VARIAVEL recebe VALOR1, se este não for nulo.
+        // Caso contrário, recebe VALOR2.
+        usuario.nome = req.body.nome || usuario.nome;
+        usuario.matricula = req.body.matricula || usuario.matricula;
+        usuario.MensagemId = req.body.MensagemId || usuario.MensagemId;
+
+        usuario
+            .save()
+            .then(function(usuarioModificado) {
+                utils.response(res, true, "Os dados do usuario foram atualizados.", usuarioModificado, undefined);
+            })
+      } else {
+          utils.response(res, false, "O usuario com o ID especificado não existe.", usuarioModificado, req.params.id);
+      }
+    })
+})
 app.delete('/usuario/:id', function(req, res) {
     Usuario
       .destroy({

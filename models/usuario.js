@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes){
-	var usuario = sequelize.define("Usuario",{
+	var Usuario = sequelize.define("Usuario",{
 		nome: {type: DataTypes.STRING, allowNull: false},
 		matricula: {type: DataTypes.STRING, allowNull: false},
 		email:{type: DataTypes.STRING, allowNull: false},
 		turma:{type: DataTypes.STRING, allowNull: false}
 	})
-	  usuario.associate = function(models) {
-        usuario.belongsTo(models.Mensagem, {
+	 Usuario.associate = function(models) {
+        Usuario.belongsTo(models.Mensagem, {
             // onDelete especifica a ação a ser tomada após a entidade ser removida:
             // Em uma relação 1:N, se o lado 1, for removido:
             // -CASCADE: as N entidades também serão removidas
@@ -21,5 +21,5 @@ module.exports = function(sequelize, DataTypes){
             }
         });
     }
-	return usuario;
+	return Usuario;
 }
