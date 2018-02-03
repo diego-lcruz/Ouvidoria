@@ -40,7 +40,25 @@ app.get('/mensagens', function(req, res) {
             utils.response(res, true, undefined, objs, undefined);
         });
 });
+app.put('/mensagem', function(req, res) {
+  Mensagem
+    .findById(parseInt(req.body.id))
+    .then(function(mensagem) {
+      if (mensagem) {
+       mensagem.assunto = req.body.assunto || mensagem.assunto;
+       mensagem.texto = req.body.texto || mensagem.texto;
+        mensagem.UsuarioId = req.body.UsuarioId || mensagem.UsuarioId;
 
+        mensagem
+            .save()
+            .then(function(mensagemModificada) {
+                utils.response(res, true, "Os dados do usuario foram atualizados.",mensagemModificada, undefined);
+            })
+      } else {
+          utils.response(res, false, "O usuario com o ID especificado não existe.", mensagemModificada, req.params.id);
+      }
+    })
+})
 app.delete('/mensagem/:id', function(req, res) {
     Mensagem
       .destroy({
