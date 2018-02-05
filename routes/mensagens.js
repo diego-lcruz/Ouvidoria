@@ -34,20 +34,20 @@ app.get('/mensagens', function(req, res) {
     Mensagem
         .findAll({
             // use include para incluir os modelos relacionados a este.
-            include: [ models.usuario]
+            include: [ models.Usuario]
         })
         .then(function(objs) {
             utils.response(res, true, undefined, objs, undefined);
         });
 });
-app.put('/mensagem', function(req, res) {
+app.put('/mensagens', function(req, res) {
   Mensagem
     .findById(parseInt(req.body.id))
     .then(function(mensagem) {
       if (mensagem) {
        mensagem.assunto = req.body.assunto || mensagem.assunto;
        mensagem.texto = req.body.texto || mensagem.texto;
-        mensagem.UsuarioId = req.body.UsuarioId || mensagem.UsuarioId;
+       mensagem.UsuarioId = req.body.UsuarioId || mensagem.UsuarioId;
 
         mensagem
             .save()

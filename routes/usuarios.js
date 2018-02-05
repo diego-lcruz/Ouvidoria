@@ -44,7 +44,6 @@ app.put('/usuarios', function(req, res) {
         // Caso contrário, recebe VALOR2.
         usuario.nome = req.body.nome || usuario.nome;
         usuario.matricula = req.body.matricula || usuario.matricula;
-        usuario.MensagemId = req.body.MensagemId || usuario.MensagemId;
 
         usuario
             .save()
