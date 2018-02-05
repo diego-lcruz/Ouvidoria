@@ -20,7 +20,7 @@ app.get('/usuarios', function(req, res) {
     })
 });
 
-app.get("usuario/:id",function(req,res){
+app.get("/usuarios/:id",function(req,res){
 	Usuario
 	.create(req.body)
 	.then(function(usuario){
