@@ -1,5 +1,6 @@
 var express = require('express')
 var app = express()
+const PORT= process.env.PORT || 5000
 var sqlite3 = require('sqlite3').verbose()
 var db = new sqlite3.Database('db.sql')
 var models = require('./models');
@@ -33,9 +34,7 @@ models.sequelize.sync().then(function() {
   /**
    * Listen on provided port, on all network interfaces.
    */
-  server.listen(port, function() {
-    console.log('Express server listening on port ' + server.address().port);
-  });
+server.listen(PORT, () => console.log('Example app listening on port: '+ PORT))
   server.on('error', onError);
   server.on('listening', onListening);
 });

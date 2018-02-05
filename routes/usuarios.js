@@ -4,7 +4,7 @@ var models  = require('../models/index');
 var utils = require('../modules/utils');
 var Usuario = models.Usuario;
 
-app.post('/usuario',function (req,res){
+app.post('/usuarios',function (req,res){
 	Usuario
 	.create(req.body)
 	.then(function(usuario){
