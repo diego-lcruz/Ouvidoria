@@ -40,7 +40,7 @@ app.get('/mensagens', function(req, res) {
             utils.response(res, true, undefined, objs, undefined);
         });
 });
-app.put('/mensagens', function(req, res) {
+app.put('usuario/:id_usuario/mensagem/:id_mensagem', function(req, res) {
   Mensagem
     .findById(parseInt(req.body.id))
     .then(function(mensagem) {

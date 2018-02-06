@@ -33,7 +33,7 @@ app.get("/usuarios/:id",function(req,res){
 
 
 });
-app.put('/usuarios', function(req, res) {
+app.put('/usuarios/:id', function(req, res) {
   Usuario
     .findById(parseInt(req.body.id))
     .then(function(usuario) {
